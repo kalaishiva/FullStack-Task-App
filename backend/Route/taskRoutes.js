@@ -1,9 +1,9 @@
 //Bring the Task
 const express = require('express');
+const router = express.Router();
 
 const { home } = require('../Controllers/taskController');
 
-const router = express.Router();
 
 router.get('/', home);
 
