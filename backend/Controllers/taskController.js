@@ -96,4 +96,28 @@ const deleteTask = async(req, res) => {
     }
 }
 
-module.exports = { home, createTask, getTasks, editTask, deleteTask }
+//remove Task
+const removeTask = async(req, res) => {
+    try {
+
+        const query = { title: `${req.params.title}` };
+        console.log(query);
+        const task = await Task.deleteMany(query);
+        //const task = await Task.find(req.params.id, req.body).deleteMany()
+
+        res.status(200).json({
+            success: true,
+            message: "Task removed successfully",
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
+
+    }
+}
+
+
+module.exports = { home, createTask, getTasks, editTask, deleteTask, removeTask }
