@@ -119,7 +119,53 @@ const removeTask = async(req, res) => {
     }
 }
 
-//
+//important
+const importantTasks = async(req, res) => {
+    try {
+
+        const query = { important: `${req.params.important}` }
+            //console.log(query);
+        const importantTasks = await Task.find(query);
+        //console.log(importantTasks);
+        res.status(200).json({
+            success: true,
+            importantTasks,
+
+        })
 
 
-module.exports = { home, createTask, getTasks, editTask, deleteTask, removeTask }
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+
+//Completed Task
+
+const completedTask = async(req, res) => {
+    try {
+        const query = { complete: `${req.params.complete}` }
+        const completeResult = await Task.find(query);
+        res.status(200).json({
+            success: true,
+            completeResult,
+
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
+
+    }
+}
+
+
+
+
+module.exports = { home, createTask, getTasks, editTask, deleteTask, removeTask, importantTasks, completedTask }

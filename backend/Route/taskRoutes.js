@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { home, createTask, getTasks, editTask, deleteTask, removeTask } = require('../Controllers/taskController');
+const { home, createTask, getTasks, editTask, deleteTask, removeTask, importantTasks, completedTask } = require('../Controllers/taskController');
 
 
 router.get('/', home);
@@ -11,5 +11,7 @@ router.get('/getTasks', getTasks);
 router.put('/editTask/:id', editTask);
 router.delete('/deleteTask/:id', deleteTask);
 router.delete('/removeTask/:title', removeTask);
+router.get('/importantTasks/:important', importantTasks);
+router.get('/completedTask/:complete', completedTask);
 
 module.exports = router;
