@@ -2,7 +2,36 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+        <div className="navbar bg-base-100 px-[6.25rem] py-[5.25rem]">
+  <div className="navbar-start">
+   
+    <a className="btn btn-ghost text-primary normal-case text-5xl">Task Manager</a>
+  </div>
+  <div className="navbar-center hidden lg:flex">
+    <ul className="menu menu-horizontal p-0 ">
+         <li> 
+            <div className="navbar ">
+                <a className="btn bg-sky-100 text-fuchsia-800  text-xl font-semibold">Add Task</a>
+            </div>
+       </li>
+
+      <li> 
+        <div className="navbar ">
+            <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold">Important Task</a>
+        </div> 
+      </li>
+      
+      <li> <div className="navbar">
+    <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold">Completed Task</a>
+  </div></li>
+    </ul>
+  </div>
+  <div className="navbar-end">
+    <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold">Search</a>
+  </div>
+</div>
+    </div>
   )
 }
 
