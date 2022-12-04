@@ -56,18 +56,18 @@ const FormTask = () => {
 
     <tbody  >
     <tr  >
-        <td className='even bg-slate-100' > <i class="fa-solid fa-star"></i> Running <i class="fa-solid fa-circle-check"></i><i class="fa-solid fa-trash-can"></i></td>
+        <td className='even bg-slate-100 ' > <i class="fa-solid fa-star star"></i> Running <i class="fa-solid fa-circle-check circle-check "></i><i class="fa-solid fa-trash-can "></i></td>
         
       </tr>
 
      <tr>
-        <td className='odd bg-slate-400'> <i class="fa-regular fa-star"></i>Jogging <i class="fa-regular fa-circle"></i></td>
+        <td className='odd bg-indigo-200'> <i class="fa-regular fa-star star"></i>Jogging <i class="fa-regular fa-circle circle"></i><i class="fa-solid fa-trash-can"></i></td>
       </tr>
     <tr>
-        <td className='even bg-slate-100'>Cooking</td>
+        <td className='even bg-slate-100'><i class="fa-solid fa-star star"></i>Cooking <i class="fa-solid fa-circle-check circle-check"></i><i class="fa-solid fa-trash-can"></i></td>
       </tr>
       <tr>
-        <td className='odd bg-slate-400'>Painting</td>
+        <td className='odd bg-indigo-200'><i class="fa-solid fa-star star"></i> Painting <i class="fa-solid fa-circle-check circle-check"></i><i class="fa-solid fa-trash-can"></i></td>
       </tr>
     </tbody>
   </table>

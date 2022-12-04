@@ -29,6 +29,37 @@ code {
     font-size: 2rem;
 }
 
+.star {
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+.cardStar {
+    padding-left: 2px;
+    padding-right: 30px;
+}
+
+.circleCard {
+    padding-left: 42px;
+    padding-right: 30px;
+}
+
+.circle,
+.circle-check {
+    padding-left: 140px;
+    padding-right: 35px;
+}
+
+ul {
+    padding: 4px;
+}
+
+li {
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
