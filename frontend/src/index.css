@@ -11,6 +11,24 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.even {
+    color: darkblue;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.odd {
+    color: darkblue;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.card-heading {
+    color: rgb(139, 0, 127);
+    font-weight: 600;
+    font-size: 2rem;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
