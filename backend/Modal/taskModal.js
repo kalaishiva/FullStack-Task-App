@@ -7,7 +7,7 @@ const taskSchema = new mongoose.Schema({
         require: [true, 'Title is require']
     },
     todo: {
-        type: String,
+        type: Array,
         require: [true, 'Task is require']
     },
     important: {

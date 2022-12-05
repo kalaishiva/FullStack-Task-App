@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 
 const FormTask = () => {
+  
+  const [title, setTitle] = useState("");
+  const [todo, setTodo] =useState("");
+  const [todoArray, setTodoArray] = useState([]);
+  const [todoTask, setTodoTask] = useState([]);
+
+  
+ 
+  const addTodo = () => {
+
+    todoArray.push({"title": title, "todo": todo});
+    setTodo("");   
+    console.log(todoArray);
+  }
+
+
+  const createTaskData = (event) =>{
+    event.preventDefault();
+    submitData();
+  }
+
+const submitData = async() =>{
+ 
+  const taskData = {
+    "title": title,
+    "todo": todoArray,
+    
+  }
+  const res = await axios.post("/createTask", taskData);
+  console.log(res);
+  
+
+  /* todoTask.push({"TaskHeading": title, "TaskTodo": todoArray});
+  console.log(todoTask); */
+}
+  
+  
   return (
     <div className=''>
 <div className="flex flex-col w-full lg:flex-row">
@@ -12,17 +51,24 @@ const FormTask = () => {
           <label className="label">
             <span className="label-text text-2xl font-bold">Title</span>
           </label>
-          <input type="text" placeholder="Title" className="input input-bordered  " />
+          <input type="text" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}} className="input input-bordered  " />
         </div>
         <div className="form-control">
           <label className="label ">
             <span className="label-text text-2xl font-bold">Todo</span>
           </label>
-          <input type="text" placeholder="Todo" className="input input-bordered" />
+          <input type="text" placeholder="Todo" value={todo} onChange={(e)=>{setTodo(e.target.value)}} className="input input-bordered" />
           
         </div>
+
+        <label className="label">
+    <input type="checkbox"  className="checkbox checkbox-primary" />
+    <span className="text-lg pr-[4.5rem]">Important</span>
+  </label>
+
+
         <div className="form-control mt-6">
-          <button className="btn btn-primary font-semibold  text-xl" >Add Todo</button>
+          <button className="btn btn-primary font-semibold  text-xl" onClick={addTodo} >Add Todo</button>
         </div>
       </div>
     
@@ -50,25 +96,42 @@ const FormTask = () => {
   <table className="table    w-full">
     <thead >
       <tr>
-        <th className='font-semibold text-[25px] text-purple-300 text-center sticky top-0' >Activity</th>
+        <th className='font-semibold text-[25px] text-purple-300 text-center sticky top-0' >{title}</th>
       </tr>
     </thead>
+    
+    
 
-    <tbody  >
-    <tr  >
-        <td className='even bg-slate-100 ' > <i class="fa-solid fa-star star"></i> Running <i class="fa-solid fa-circle-check circle-check "></i><i class="fa-solid fa-trash-can "></i></td>
+    <tbody>
+   
+    {todoArray.map( (item, index) => (
+    
+    
+      (index % 2 == 0 ) ? (<tr>
+        <td className='even bg-slate-100'><i class="fa-solid fa-star star"></i> {item.todo}<i class="fa-regular fa-circle circle-check"></i><i class="fa-solid fa-trash-can"></i></td>
+</tr>) :
         
-      </tr>
+    
+        (<tr>
+  <td className='odd bg-indigo-200'> <i class="fa-regular fa-star star"></i>{item.todo} <i class="fa-regular fa-circle circle"></i><i class="fa-solid fa-trash-can"></i></td>
 
+
+</tr>)
+
+
+      ))}
+
+     
+
+
+{/*  <tr>
+        <td className='even bg-slate-100 ' > <i class="fa-solid fa-star star"></i> {todo} <i class="fa-solid fa-circle-check circle-check "></i><i class="fa-solid fa-trash-can "></i></td>
+      </tr> 
      <tr>
-        <td className='odd bg-indigo-200'> <i class="fa-regular fa-star star"></i>Jogging <i class="fa-regular fa-circle circle"></i><i class="fa-solid fa-trash-can"></i></td>
-      </tr>
-    <tr>
-        <td className='even bg-slate-100'><i class="fa-solid fa-star star"></i>Cooking <i class="fa-solid fa-circle-check circle-check"></i><i class="fa-solid fa-trash-can"></i></td>
       </tr>
       <tr>
         <td className='odd bg-indigo-200'><i class="fa-solid fa-star star"></i> Painting <i class="fa-solid fa-circle-check circle-check"></i><i class="fa-solid fa-trash-can"></i></td>
-      </tr>
+      </tr> */}
     </tbody>
   </table>
 </div>
@@ -84,7 +147,7 @@ const FormTask = () => {
 
 
 <div className="form-control mt-6">
-          <button className="btn btn-primary w-[40%] m-auto font-semibold  text-xl">Create Task</button>
+          <button className="btn btn-primary w-[40%] m-auto font-semibold  text-xl" onClick={createTaskData}>Create Task</button>
         </div>
 
    
