@@ -108,12 +108,12 @@ const submitData = async() =>{
     
     
       (index % 2 == 0 ) ? (<tr>
-        <td className='even bg-slate-100'><i class="fa-solid fa-star star"></i> {item.todo}<i class="fa-regular fa-circle circle-check"></i><i class="fa-solid fa-trash-can"></i></td>
+        <td className='even bg-slate-100'><i class="fa-solid fa-star star"></i> {item.todo}<i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
 </tr>) :
         
     
         (<tr>
-  <td className='odd bg-indigo-200'> <i class="fa-regular fa-star star"></i>{item.todo} <i class="fa-regular fa-circle circle"></i><i class="fa-solid fa-trash-can"></i></td>
+  <td className='odd bg-indigo-200'> <i class="fa-regular fa-star star"></i>{item.todo} <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
 
 
 </tr>)
