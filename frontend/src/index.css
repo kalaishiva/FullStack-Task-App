@@ -11,6 +11,11 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.input-field {
+    height: 46px;
+    border-radius: 10px;
+}
+
 .even {
     color: darkblue;
     font-weight: 500;
@@ -37,11 +42,13 @@ code {
 .cardStar {
     padding-left: 2px;
     padding-right: 30px;
+    color: rgb(253, 218, 114);
 }
 
 .circleCard {
     padding-left: 42px;
     padding-right: 30px;
+    color: aquamarine;
 }
 
 .fa-pen-to-square {
@@ -69,12 +76,12 @@ li {
 }
 
 .circleTrash {
-    /*     justify-content: flex-end;
- */
+    color: rgba(248, 100, 169, 0.951);
 }
 
 .todoItem {
     min-width: 142px;
+    color: lightyellow;
 }
 
 @tailwind base;

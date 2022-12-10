@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import axios from 'axios';
 
 
@@ -8,14 +8,18 @@ const FormTask = () => {
   const [todo, setTodo] =useState("");
   const [todoArray, setTodoArray] = useState([]);
   const [todoTask, setTodoTask] = useState([]);
-
+  const [impTodo, setImpTodo] = useState(false);
+  // const [starr, setStarr]= useState(true);
+/*   const [checkboxStatus, setCheckboxStatus] = useState("checked");
+ */
+const [complete, setComplete] = useState(false);
   
  
   const addTodo = () => {
 
-    todoArray.push({"title": title, "todo": todo});
+    todoArray.push({"title": title, "todo": todo, "important": impTodo, "complete": false});
     setTodo("");   
-    console.log(todoArray);
+   console.log(todoArray);
   }
 
 
@@ -29,6 +33,7 @@ const submitData = async() =>{
   const taskData = {
     "title": title,
     "todo": todoArray,
+  
     
   }
   const res = await axios.post("/createTask", taskData);
@@ -37,8 +42,14 @@ const submitData = async() =>{
 
   /* todoTask.push({"TaskHeading": title, "TaskTodo": todoArray});
   console.log(todoTask); */
-}
+
   
+}
+
+
+
+  
+
   
   return (
     <div className=''>
@@ -62,7 +73,10 @@ const submitData = async() =>{
         </div>
 
         <label className="label">
-    <input type="checkbox"  className="checkbox checkbox-primary" />
+        {<input type="checkbox"  checked={impTodo} className="checkbox checkbox-primary" onClick={() => setImpTodo(current => !current)} /> }
+ {/*         {!impTodo ?    ( <input type="checkbox" checked  className="checkbox checkbox-primary" onClick={toggleImpTodo} />) :
+      (<input type="checkbox"   className="checkbox checkbox-primary" onClick={toggleImpTodo} />)
+  } */}
     <span className="text-lg pr-[4.5rem]">Important</span>
   </label>
 
@@ -95,8 +109,8 @@ const submitData = async() =>{
 <div className="overflow-y-scroll  h-[240px] relative">
   <table className="table    w-full">
     <thead >
-      <tr>
-        <th className='font-semibold text-[25px] text-purple-300 text-center sticky top-0' >{title}</th>
+      <tr  className='bg-blue'>
+        <th className='font-semibold  text-[25px] text-purple-300 text-center sticky top-0 bg-blue-100 input-field' >{title}</th>
       </tr>
     </thead>
     
@@ -105,15 +119,25 @@ const submitData = async() =>{
     <tbody>
    
     {todoArray.map( (item, index) => (
+
+      
+  //  (item.important)? (setStarr("fa-solid")): (setStarr(""))
     
     
       (index % 2 == 0 ) ? (<tr>
-        <td className='even bg-slate-100'><i class="fa-solid fa-star star"></i> {item.todo}<i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+        <td className='even bg-slate-100'>
+
+          {(item.important) ? (<i class="fa-solid fa-star"></i>) : (<i class="fa-regular fa-star"></i>)}
+
+          {item.todo}
+          <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
 </tr>) :
         
     
         (<tr>
-  <td className='odd bg-indigo-200'> <i class="fa-regular fa-star star"></i>{item.todo} <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+  <td className='odd bg-indigo-200'> 
+  {(item.important) ? (<i class="fa-solid fa-star"></i>) : (<i class="fa-regular fa-star"></i>)}
+  {item.todo} <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
 
 
 </tr>)

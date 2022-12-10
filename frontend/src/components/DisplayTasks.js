@@ -4,7 +4,7 @@ import axios from 'axios';
  const DisplayTasks = () => {
  
   const [taskData, setTaskData] = useState([]);
-
+const [complete, setComplete] =useState(false);
 
     const fetchTaskData = async () =>{
       
@@ -33,6 +33,27 @@ import axios from 'axios';
 
  }
 
+ //completeTask 
+
+ const completeTask = (taskId, todo,currentStatus) =>{
+  console.log(taskId + "  :  " + todo+":"+currentStatus);
+  const newStatus = ! currentStatus;
+  UpdateCompleteTask(taskId, todo, newStatus);
+  //setComplete(!complete);
+ }
+const UpdateCompleteTask= async (taskId,todo,newStatus) =>{
+ const completeData = {
+  "taskId": taskId,
+  "todo": todo,
+  "complete":newStatus,
+
+}
+
+console.log(completeData);
+const resp = await axios.put("/completedTask",completeData);
+console.log(resp);
+
+ }
 
   return (
     <>
@@ -46,17 +67,22 @@ import axios from 'axios';
     <ul className="list-none">
     <h2 className="text-lg sm:text-2xl text-info font-bold title-font my-4 text-center">{task.title}</h2>
       
-      {task.todo.map((eachTodo)=>(
+      {task.todo.map((eachTodo, index)=>(
         <li>
           <div className='star'>
-             <i className="fa-solid fa-star cardStar"></i> 
-          </div>
+          {(eachTodo["important"]) ? (<i class="fa-solid fa-star cardStar"></i>) : (<i class="fa-regular fa-star cardStar"></i>)}
+{/*              <i className="fa-solid fa-star cardStar"></i> 
+ */}          </div>
           <div className='todoItem'>{(eachTodo["todo"])}</div>
           
           
            <div className='circleTrash'>
-              <i className="fa-solid fa-circle-check circleCard"></i>
-              <i className="fa-solid fa-trash-can" ></i>
+{ (eachTodo["complete"])?  <i className="fa-regular fa-circle-check circleCard" onClick={() => completeTask( task._id, eachTodo["todo"],eachTodo["complete"])}></i>: 
+ <i className="fa-regular fa-circle circleCard" onClick={() => completeTask(task._id, eachTodo["todo"],eachTodo["complete"])}></i>}
+
+             
+{/*               <i className="fa-solid fa-circle-check circleCard"></i>
+ */}              <i className="fa-solid fa-trash-can" ></i>
            </div>
         </li>
       ))}

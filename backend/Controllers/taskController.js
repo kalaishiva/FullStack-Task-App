@@ -147,13 +147,36 @@ const importantTasks = async(req, res) => {
 
 const completedTask = async(req, res) => {
     try {
-        const query = { complete: `${req.params.complete}` }
-        const completeResult = await Task.find(query);
+
+        const { taskId, todo, complete } = req.body;
+
+        console.log(taskId + ":" + todo + ":" + complete);
+
+        const completeResult = await Task.findOneAndUpdate(
+
+            {
+                id: taskId,
+                'todo.todo': todo
+            }, {
+                $set: {
+                    'todo.$.complete': complete
+                }
+            });
+
         res.status(200).json({
             success: true,
             completeResult,
 
         })
+
+
+        // const query = { complete: `${req.params.complete}` }  
+        // const completeResult = await Task.find(query);
+        // res.status(200).json({
+        //     success: true,
+        //     completeResult,
+
+        // })
 
     } catch (error) {
         console.log(error);

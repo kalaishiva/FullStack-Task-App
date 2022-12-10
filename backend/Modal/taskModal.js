@@ -10,12 +10,12 @@ const taskSchema = new mongoose.Schema({
         type: Array,
         require: [true, 'Task is require']
     },
-    important: {
-        type: Boolean,
-    },
-    complete: {
-        type: Boolean,
-    }
+    /*  important: {
+         type: Boolean,
+     },
+     complete: {
+         type: Boolean,
+     } */
 });
 
 module.exports = mongoose.model("Task", taskSchema);

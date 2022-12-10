@@ -11,7 +11,7 @@ router.get('/getTasks', getTasks);
 router.put('/editTask/:id', editTask);
 router.delete('/deleteTask/:id', deleteTask);
 router.delete('/removeTask/:title', removeTask);
-router.get('/importantTasks/:important', importantTasks);
-router.get('/completedTask/:complete', completedTask);
+router.put('/importantTasks/:important', importantTasks);
+router.put('/completedTask/', completedTask);
 
 module.exports = router;
