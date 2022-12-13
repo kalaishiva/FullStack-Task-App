@@ -33,27 +33,66 @@ const [complete, setComplete] =useState(false);
 
  }
 
+ //deleteTodo
+
+   const deleteTodo = (todoId, todo) =>{
+  const deleteTodoData = taskData.filter(todoId);
+    console.log("Filtered data=" +deleteTodoData)
+  } 
+/* const delItem = (taskData.filter((i)))
+
+  todoItemDelete(todoId, todo);
+} 
+const todoItemDelete = async(todoId, todo) =>{
+  console.log();
+const resp = await axios.delete(`/deleteTodo/${todoId}&${todo}`);
+console.log(resp);
+} */
+
+
+
  //completeTask 
 
  const completeTask = (taskId, todo,currentStatus) =>{
   console.log(taskId + "  :  " + todo+":"+currentStatus);
   const newStatus = ! currentStatus;
-  UpdateCompleteTask(taskId, todo, newStatus);
+  const completeData = {
+    "taskId": taskId,
+    "todo": todo,
+    "complete":newStatus,
+  
+  }
+  UpdateCompleteTask(completeData);
   //setComplete(!complete);
  }
-const UpdateCompleteTask= async (taskId,todo,newStatus) =>{
- const completeData = {
-  "taskId": taskId,
-  "todo": todo,
-  "complete":newStatus,
-
-}
+const UpdateCompleteTask= async (completeData) =>{
+ 
 
 console.log(completeData);
 const resp = await axios.put("/completedTask",completeData);
 console.log(resp);
 
  }
+
+ //importantTask
+
+ const importantTask = (taskId, todoItem, currentImp) =>{
+
+  const newImp = !currentImp;
+  const importantData = {
+    "taskId": taskId,
+    "todo":todoItem,
+    "important": newImp,
+  }
+  updateImpTask(importantData);
+}
+
+  const updateImpTask = async(importantData) =>{
+const resp = await axios.put("/importantTask", importantData);
+console.log(resp);
+  }
+
+ 
 
   return (
     <>
@@ -70,7 +109,8 @@ console.log(resp);
       {task.todo.map((eachTodo, index)=>(
         <li>
           <div className='star'>
-          {(eachTodo["important"]) ? (<i class="fa-solid fa-star cardStar"></i>) : (<i class="fa-regular fa-star cardStar"></i>)}
+          {(eachTodo["important"]) ? (<i class="fa-solid fa-star cardStar" onClick={()=>importantTask(task._id, eachTodo["todo"], eachTodo["important"])}></i>)
+           : (<i class="fa-regular fa-star cardStar" onClick={()=>importantTask(task._id, eachTodo["todo"], eachTodo["important"])}></i>)}
 {/*              <i className="fa-solid fa-star cardStar"></i> 
  */}          </div>
           <div className='todoItem'>{(eachTodo["todo"])}</div>
@@ -82,7 +122,7 @@ console.log(resp);
 
              
 {/*               <i className="fa-solid fa-circle-check circleCard"></i>
- */}              <i className="fa-solid fa-trash-can" ></i>
+ */}              <i className="fa-solid fa-trash-can" onClick={()=> deleteTodo(task._id, eachTodo["todo"])}></i>
            </div>
         </li>
       ))}

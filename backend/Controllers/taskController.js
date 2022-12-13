@@ -143,6 +143,59 @@ const importantTasks = async(req, res) => {
     }
 }
 
+//importantTask
+
+const importantTask = async(req, res) => {
+        try {
+            const { taskId, todo, important } = req.body;
+            const importantResult = await Task.findOneAndUpdate({
+                id: taskId,
+                'todo.todo': todo,
+            }, {
+                $set: {
+                    'todo.$.important': important,
+                }
+            });
+            req.status(200).json({
+                success: true,
+                importantResult,
+            })
+
+        } catch (error) {
+            console.log(error);
+            res.status(400).json({
+                success: false,
+                message: error.message,
+            })
+
+        }
+    }
+    //delete singletodo 
+const deletetodo = async(req, res) => {
+    try {
+        console.log(req.params.id);
+        const { taskId, todo } = req.params.id;
+        const deleteResult = await Task.findOneAndDelete({
+            id: taskId,
+
+        }, {
+            $pull: {
+                'todo.$.todo': todo,
+            }
+        });
+        res.status(200).json({
+            success: true,
+            deleteResult,
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+
 //Completed Task
 
 const completedTask = async(req, res) => {
@@ -191,4 +244,4 @@ const completedTask = async(req, res) => {
 
 
 
-module.exports = { home, createTask, getTasks, editTask, deleteTask, removeTask, importantTasks, completedTask }
+module.exports = { home, createTask, getTasks, editTask, deleteTask, deletetodo, removeTask, importantTasks, importantTask, completedTask }
