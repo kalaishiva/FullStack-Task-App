@@ -36,8 +36,20 @@ const [complete, setComplete] =useState(false);
  //deleteTodo
 
    const deleteTodo = (todoId, todo) =>{
-  const deleteTodoData = taskData.filter(todoId);
-    console.log("Filtered data=" +deleteTodoData)
+
+    // Filtering the Task of the Todo Items to be deleted
+
+  const deleteTodoData = taskData.filter((item)=> { return item._id == todoId ;} )
+  
+    console.log("Filtered data=" + JSON.stringify(deleteTodoData));
+
+    const delTodoItems = deleteTodoData[0].todo;
+
+    // Removing the Todo Item needs to be deleted 
+
+    const newTodoItems = delTodoItems.filter((item)=> { return item.todo != todo ;} )
+    console.log(newTodoItems);
+  
   } 
 /* const delItem = (taskData.filter((i)))
 
