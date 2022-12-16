@@ -10,11 +10,11 @@ const HomePage = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0 ">
-         <li> 
+         {/* <li> 
             <div className="navbar ">
                 <a className="btn bg-sky-100 text-fuchsia-800  text-xl font-semibold">Add Task</a>
             </div>
-       </li>
+       </li> */}
 
       <li> 
         <div className="navbar ">

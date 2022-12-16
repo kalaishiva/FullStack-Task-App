@@ -110,7 +110,7 @@ const submitData = async() =>{
   <table className="table    w-full">
     <thead >
       <tr  className='bg-blue'>
-        <th className='font-semibold  text-[25px] text-purple-300 text-center sticky top-0 bg-blue-100 input-field' >{title}</th>
+        <th className='font-semibold  text-[25px] text-purple-600 text-center sticky top-0 bg-blue-100 input-field' >{title}</th>
       </tr>
     </thead>
     
@@ -125,19 +125,20 @@ const submitData = async() =>{
     
     
       (index % 2 == 0 ) ? (<tr>
-        <td className='even bg-slate-100'>
+        <td className='even bg-slate-100 todoItems'>
 
-          {(item.important) ? (<i class="fa-solid fa-star"></i>) : (<i class="fa-regular fa-star"></i>)}
+          {(item.important) ? (<i class="fa-solid fa-star form-star"></i>) : (<i class="fa-regular fa-star form-star"></i>)}
 
-          {item.todo}
+          <div className='todoItems'>{item.todo}</div>
           <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
 </tr>) :
         
     
         (<tr>
-  <td className='odd bg-indigo-200'> 
-  {(item.important) ? (<i class="fa-solid fa-star"></i>) : (<i class="fa-regular fa-star"></i>)}
-  {item.todo} <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+  <td className='odd bg-indigo-200 todoItems'> 
+  {(item.important) ? (<i class="fa-solid fa-star form-star"></i>) : (<i class="fa-regular fa-star form-star"></i>)}
+  <div className='todoItems'>{item.todo}</div>
+   <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
 
 
 </tr>)

@@ -49,17 +49,19 @@ const [complete, setComplete] =useState(false);
 
     const newTodoItems = delTodoItems.filter((item)=> { return item.todo != todo ;} )
     console.log(newTodoItems);
-  
+    
+    const deleteDataTodo = {
+      "todoId": todoId,
+      "todo": newTodoItems,
+    }
+    deleteTodoTask(deleteDataTodo);
+    
   } 
-/* const delItem = (taskData.filter((i)))
+  const deleteTodoTask = async(deleteDataTodo) => {
+    console.log(deleteDataTodo);
+    const resp = await axios.put("/deleteTodo", deleteDataTodo);
+  }
 
-  todoItemDelete(todoId, todo);
-} 
-const todoItemDelete = async(todoId, todo) =>{
-  console.log();
-const resp = await axios.delete(`/deleteTodo/${todoId}&${todo}`);
-console.log(resp);
-} */
 
 
 
@@ -145,7 +147,7 @@ console.log(resp);
 
       <div className="btn-group my-4 mt-[38px]">
 <button className="btn btn-sm  btn-outline btn-info">Add</button>
-<button className="btn  btn-sm btn-outline btn-info">Edit</button>
+{/* <button className="btn  btn-sm btn-outline btn-info">Edit</button> */}
 <button className="btn  btn-sm btn-outline btn-info" onClick={()=> {deleteTask(task.title)}}>Remove</button>
 </div>
       </div> 

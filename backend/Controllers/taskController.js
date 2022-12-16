@@ -173,19 +173,16 @@ const importantTask = async(req, res) => {
     //delete singletodo 
 const deletetodo = async(req, res) => {
     try {
-        console.log(req.params.id);
-        const { taskId, todo } = req.params.id;
-        const deleteResult = await Task.findOneAndDelete({
-            id: taskId,
-
+        const { todoId, todo } = req.body;
+        console.log(todoId);
+        const deleteTodoTask = await Task.findByIdAndUpdate({
+            _id: todoId
         }, {
-            $pull: {
-                'todo.$.todo': todo,
-            }
+            "todo": todo
         });
         res.status(200).json({
             success: true,
-            deleteResult,
+            deleteTodoTask,
         })
     } catch (error) {
         console.log(error);
@@ -197,10 +194,8 @@ const deletetodo = async(req, res) => {
 }
 
 //Completed Task
-
 const completedTask = async(req, res) => {
     try {
-
         const { taskId, todo, complete } = req.body;
 
         console.log(taskId + ":" + todo + ":" + complete);

@@ -11,7 +11,7 @@ router.get('/getTasks', getTasks);
 router.put('/editTask/:id', editTask);
 router.delete('/deleteTask/:id', deleteTask);
 router.delete('/removeTask/:title', removeTask);
-router.delete('/deleteTodo/:id&:todo', deletetodo);
+router.put('/deleteTodo/', deletetodo);
 router.put('/importantTasks/:important', importantTasks);
 router.put('/completedTask/', completedTask);
 router.put('/importantTask/', importantTask);
