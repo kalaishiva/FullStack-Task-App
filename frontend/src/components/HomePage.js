@@ -1,8 +1,11 @@
 import React from 'react';
 import FormTask from './FormTask';
 import DisplayTasks from './DisplayTasks';
+import { useNavigate } from 'react-router-dom';
+
 
 const HomePage = () => {
+  const navigate = useNavigate();
   return (
     <div>
 
@@ -22,12 +25,16 @@ const HomePage = () => {
 
       <li> 
         <div className="navbar ">
-            <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold">Important Task</a>
+            <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold"
+            onClick={()=>{navigate('/Important')}}
+            >Important Task</a>
         </div> 
       </li>
       
       <li> <div className="navbar">
-    <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold">Completed Task</a>
+    <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold"
+    onClick={()=>{navigate('/Completed')}}
+    >Completed Task</a>
   </div></li>
     </ul>
   </div>

@@ -1,56 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
 
 
 const CompletedTask = () => {
+  const [completedTask, setCompletedTask] = useState([]);
 
     const getCompletedTask = async() => {
-        const resp = await axios.get("./completedTask");
+        const resp = await axios.get("/completedTask");
+        if(resp.data.task.length>0){
+          setCompletedTask(resp.data.task);
+      }
         console.log(resp);
-    }
-    getCompletedTask();
+      }
+      
+      useEffect(() => {
+        
+        getCompletedTask();
+        console.log(completedTask);
+      
+    }, [])
+    
     return (
       <div>
   
   <div className="navbar-center">
    
-   <a className="btn btn-ghost text-primary normal-case text-5xl my-[30px]">Completed Task</a>
+   <a className="btn btn-ghost text-cyan-300 normal-case text-5xl my-[30px]">Completed Task</a>
  </div>
 <div className="overflow-x-auto">
   <table className="table w-full">
 {/*     <!-- head -->
  */}    <thead>
       <tr >
-        <th></th>
-        <th className='table_heading text-xl'>Name</th>
-        <th className='table_heading text-xl'>Job</th>
-        <th className='table_heading text-xl'>Favorite Color</th>
+        
+        <th className='table_heading text-xl'>Title</th>
+        <th className='table_heading text-xl'>Todo</th>
+        <th className='table_heading text-xl'>Completed</th>
       </tr>
     </thead>
     <tbody>
      {/*  <!-- row 1 --> */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
+     {completedTask && completedTask.map((item)=>
+
+      (item.todo.map((completedItem)=>(
+        <tr>
+        <td>{completedItem.title}</td>
+        <td>{completedItem.todo}</td>
+        
+        <td><i className="fa-regular fa-circle-check circleCard"></i></td>
       </tr>
-     {/*  <!-- row 2 --> */}
-      <tr className="hover">
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-     {/*  <!-- row 3 --> */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
+    
+
+      ))
+      ))}
+     
+    
     </tbody>
   </table>
 </div>
