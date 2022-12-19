@@ -120,28 +120,28 @@ const removeTask = async(req, res) => {
 }
 
 //important
-const importantTasks = async(req, res) => {
-    try {
+// const importantTasks = async(req, res) => {
+//     try {
 
-        const query = { important: `${req.params.important}` }
-            //console.log(query);
-        const importantTasks = await Task.find(query);
-        //console.log(importantTasks);
-        res.status(200).json({
-            success: true,
-            importantTasks,
+//         const query = { important: `${req.params.important}` }
+//             //console.log(query);
+//         const importantTasks = await Task.find(query);
+//         //console.log(importantTasks);
+//         res.status(200).json({
+//             success: true,
+//             importantTasks,
 
-        })
+//         })
 
 
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({
-            success: false,
-            message: error.message,
-        })
-    }
-}
+//     } catch (error) {
+//         console.log(error);
+//         res.status(400).json({
+//             success: false,
+//             message: error.message,
+//         })
+//     }
+// }
 
 //importantTask
 
@@ -156,7 +156,7 @@ const importantTask = async(req, res) => {
                     'todo.$.important': important,
                 }
             });
-            req.status(200).json({
+            res.status(200).json({
                 success: true,
                 importantResult,
             })
@@ -170,7 +170,76 @@ const importantTask = async(req, res) => {
 
         }
     }
-    //delete singletodo 
+    //getImportantTask
+const getImportantTask = async(req, res) => {
+    try {
+        const query = {
+            $project: {
+                todo: {
+                    $filter: {
+                        input: "$todo",
+                        as: "todoitem",
+                        cond: { $eq: ["$$todoitem.important", true] }
+                    }
+                }
+            }
+        };
+        console.log(query);
+        const task = await Task.aggregate([query]);
+        console.log(task);
+        res.status(200).json({
+            success: true,
+            task,
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
+
+    }
+}
+
+
+//getCompletedTask
+const getCompletedTask = async(req, res) => {
+    try {
+        const query = {
+            $project: {
+                todo: {
+                    $filter: {
+                        input: "$todo",
+                        as: "todoitem",
+                        cond: { $eq: ["$$todoitem.complete", true] }
+                    }
+                }
+            }
+        };
+        console.log(query);
+        const task = await Task.aggregate([query]);
+        console.log(task);
+        res.status(200).json({
+            success: true,
+            task,
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
+
+    }
+}
+
+
+
+
+
+//delete singletodo 
 const deletetodo = async(req, res) => {
     try {
         const { todoId, todo } = req.body;
@@ -239,4 +308,4 @@ const completedTask = async(req, res) => {
 
 
 
-module.exports = { home, createTask, getTasks, editTask, deleteTask, deletetodo, removeTask, importantTasks, importantTask, completedTask }
+module.exports = { home, createTask, getTasks, editTask, deleteTask, deletetodo, removeTask, importantTask, completedTask, getImportantTask, getCompletedTask }

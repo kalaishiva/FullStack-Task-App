@@ -98,13 +98,15 @@ li {
 }
 
 .table_heading {
-    color: cyan;
+    color: rgb(169, 42, 167);
     font-weight: 500;
+    text-align: center;
 }
 
 td {
-    color: blanchedalmond;
+    color: rgb(255, 248, 237);
     font-size: larger;
+    text-align: center;
 }
 
 @tailwind base;

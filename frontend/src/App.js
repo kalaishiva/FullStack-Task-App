@@ -3,6 +3,7 @@ import DisplayTasks from './components/DisplayTasks';
 import FormTask from './components/FormTask';
 import HomePage from './components/HomePage';
 import ImportantTask from './components/Important';
+import CompletedTask from './components/CompletedTask';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -16,6 +17,7 @@ function App() {
   <Route exact path="/FormTask" element={<FormTask />} />
   <Route exact path="/DisplayTasks" element={<DisplayTasks />} />
   <Route exact path="/Important" element={<ImportantTask />} />
+  <Route exact path="/Completed" element={<CompletedTask />} />
 
   </Routes>
 </Router>
