@@ -2,8 +2,8 @@ import React, {  useState } from 'react';
 import axios from 'axios';
 
 
-const FormTask = () => {
-  
+const FormTask = (props) => {
+  console.log(props.brand);
   const [title, setTitle] = useState("");
   const [todo, setTodo] =useState("");
   const [todoArray, setTodoArray] = useState([]);
@@ -52,15 +52,22 @@ const submitData = async() =>{
 
   
   return (
+    
     <div className=''>
 <div className="flex flex-col w-full lg:flex-row">
   <div className="grid flex-grow h-[382px] card bg-base-300 rounded-box place-items-center">
       
       <div className="card-body">
+      {/* <div className="navbar-start">
+   
+   <a className="btn btn-ghost text-primary normal-case text-5xl">{props.heading}</a>
+ </div> */}
+
         <div className="form-control">
 
           <label className="label">
             <span className="label-text text-2xl font-bold">Title</span>
+            <div>{props.brand}</div>
           </label>
           <input type="text" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}} className="input input-bordered  " />
         </div>

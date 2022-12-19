@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
- const DisplayTasks = () => {
+
+
+/*
+  
+} */
+
+
+const DisplayTasks = () => {
+  
+  const navigate = useNavigate();
+
+  // const GoToFormTask = () =>{
+  //   console.log("clicked");
+  //   navigate('./FormTask');
+  // }
  
   const [taskData, setTaskData] = useState([]);
 const [complete, setComplete] =useState(false);
@@ -146,7 +161,7 @@ console.log(resp);
 
 
       <div className="btn-group my-4 mt-[38px]">
-<button className="btn btn-sm  btn-outline btn-info">Add</button>
+<button className="btn btn-sm  btn-outline btn-info" onClick={()=>{navigate('/FormTask', {heading: "Add todo"})}}>Add</button>
 {/* <button className="btn  btn-sm btn-outline btn-info">Edit</button> */}
 <button className="btn  btn-sm btn-outline btn-info" onClick={()=> {deleteTask(task.title)}}>Remove</button>
 </div>

@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import FormTask from './FormTask';
+import DisplayTasks from './DisplayTasks';
 
 const HomePage = () => {
   return (
     <div>
+
+
         <div className="navbar bg-base-100 px-[6.25rem] py-[5.25rem]">
   <div className="navbar-start">
    
@@ -31,6 +35,8 @@ const HomePage = () => {
     <a className="btn bg-sky-100 text-fuchsia-800 text-xl font-semibold">Search</a>
   </div>
 </div>
+<FormTask />
+<DisplayTasks />
     </div>
   )
 }
